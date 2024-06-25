@@ -9,7 +9,7 @@ export const initialState: ReadonlyArray<Book> = [];
 export const collectionsReducer = createReducer(
   initialState,
   on(BooksActions.removeBook, (state, { book }) => state.filter(({ id }) => id !== book.id)),
-  on(BooksActions.addBook, (state,  {book}) => {
+  on(BooksActions.addBook, (state, { book }) => {
     if (state.indexOf(book) > -1) return state;
 
     return [...state, book];

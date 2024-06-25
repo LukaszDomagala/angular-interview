@@ -3,17 +3,18 @@ import { RouterOutlet } from '@angular/router';
 import { BookListComponent } from './book-list/book-list.component';
 import { BookCollectionComponent } from './book-collection/book-collection.component';
 import { Store } from '@ngrx/store';
-import { selectAvailableBooks, selectBooks } from './book-list/books.selectors';
-import { BooksActions, BooksApiActions } from './book-list/books.actions';
+import { selectAvailableBooks } from './book-list/books.selectors';
+import { BooksActions } from './book-list/books.actions';
 import { CommonModule } from '@angular/common';
 import { GoogleBooksService } from './book-list/books.service';
 import { Book } from './book-list/books.model';
 import { selectCollection } from './book-collection/collections.selectors';
+import { FormComponent } from './form/form.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, BookListComponent, BookCollectionComponent],
+  imports: [CommonModule, RouterOutlet, BookListComponent, BookCollectionComponent, FormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -26,6 +27,10 @@ export class AppComponent implements OnInit {
     private store: Store,
   ) {}
 
+  onSearch(query: string) {
+    this.store.dispatch(BooksActions.search({ query }));
+  }
+
   onAdd(book: Book) {
     this.store.dispatch(BooksActions.addBook({ book }));
   }
@@ -35,8 +40,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.booksService
-      .getBooks()
-      .subscribe((books) => this.store.dispatch(BooksApiActions.retrievedBookList({ books })));
+    // this.booksService
+    //   .getBooks()
+    //   .subscribe((books) => this.store.dispatch(BooksApiActions.retrievedBookList({ books })));
   }
 }

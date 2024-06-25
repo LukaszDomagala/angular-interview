@@ -1,0 +1,4 @@
+<form class="flex flex-col my-3">
+  <label for="search" class="text-sm">Search:</label>
+  <input type="text" id="search" class="px-2" [formControl]="search" (keydown.enter)="onEnter($event)" />
+</form>

@@ -4,6 +4,7 @@ import { Book } from './books.model';
 export const BooksActions = createActionGroup({
   source: 'Books',
   events: {
+    Search: props<{ query: string }>(),
     'Add Book': props<{ book: Book }>(),
     'Remove Book': props<{ book: Book }>(),
   },

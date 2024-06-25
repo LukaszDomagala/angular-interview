@@ -8,6 +8,8 @@ import { booksFeature } from './book-list/books.reducer';
 import { collectionsFeature } from './book-collection/collections.reducer';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideEffects } from '@ngrx/effects';
+import { BooksEffects } from './book-list/books.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideState(booksFeature),
     provideState(collectionsFeature),
+    provideEffects(BooksEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };
