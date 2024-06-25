@@ -1,0 +1,16 @@
+<h1 class="text-4xl font-bold pb-4">Oliver Sacks Books Collection</h1>
+
+<div class="flex flex-row gap-4">
+  <div class="flex flex-col flex-1">
+    <h2 class="text-xl font-semibold pb-2">Books</h2>
+    <app-book-list class="book-list" [books]="(books$ | async)!" (add)="onAdd($event)"></app-book-list>
+  </div>
+
+  <div class="flex flex-col flex-1">
+    <h2 class="text-xl font-semibold pb-2">My Collection</h2>
+    <app-book-collection
+      class="book-collection"
+      [books]="(bookCollection$ | async)!"
+      (remove)="onRemove($event)"></app-book-collection>
+  </div>
+</div>
