@@ -1,14 +1,18 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Book } from './books.model';
+import { BOOKS_MOCK } from './books-mock';
 
 @Injectable({ providedIn: 'root' })
 export class GoogleBooksService {
   constructor(private http: HttpClient) {}
 
+  // TODO 1: complete implementation of getBooks()
+  // TODO 2: set query parameters orderBy = "relevance" and q = "Harry Potter"
+  // TODO 3: dynamically change q parameter based on method parameter, default value = "Harry Potter"
   getBooks(query: string): Observable<Array<Book>> {
     const baseUrl = 'https://www.googleapis.com/books/v1/volumes';
 
@@ -19,5 +23,9 @@ export class GoogleBooksService {
         items: Book[];
       }>(baseUrl, { params: params })
       .pipe(map((books) => books.items || []));
+  }
+
+  getMockBooks(): Observable<Array<Book>> {
+    return of(BOOKS_MOCK);
   }
 }

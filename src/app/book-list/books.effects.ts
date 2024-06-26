@@ -12,6 +12,7 @@ export class BooksEffects {
     private booksService: GoogleBooksService,
   ) {}
 
+  // TODO 1: add effect for fetching books
   searchBooks$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BooksActions.search),

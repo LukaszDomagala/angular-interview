@@ -1,6 +1,6 @@
 <div class="rounded-lg bg-white shadow mb-2 p-3 flex flex-row gap-3 items-center">
   <div class="flex-1">
-    <p class="font-serif font-light italic text-lg">{{ book.volumeInfo.title }}</p>
+    <p class="font-serif font-light italic text-lg" data-test="book-title">{{ book.volumeInfo.title }}</p>
     <span class="text-sm">by {{ book.volumeInfo.authors }}</span>
   </div>
   <ng-content></ng-content>

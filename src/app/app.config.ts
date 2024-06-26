@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideState(booksFeature),
     provideState(collectionsFeature),
-    provideEffects(BooksEffects),
+    provideEffects(BooksEffects), // TODO: register effects
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };
