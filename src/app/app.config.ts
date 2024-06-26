@@ -6,17 +6,18 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideState, provideStore } from '@ngrx/store';
 import { booksFeature } from './book-list/books.reducer';
 import { collectionsFeature } from './book-collection/collections.reducer';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideEffects } from '@ngrx/effects';
 import { BooksEffects } from './book-list/books.effects';
+import { loadingInterceptor } from './loading.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideAnimations(),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([loadingInterceptor])),
     provideStore(),
     provideState(booksFeature),
     provideState(collectionsFeature),

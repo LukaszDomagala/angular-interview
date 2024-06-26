@@ -1,13 +1,15 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Book } from './books.model';
 import { BOOKS_MOCK } from './books-mock';
 
 @Injectable({ providedIn: 'root' })
 export class GoogleBooksService {
+  isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   constructor(private http: HttpClient) {}
 
   // TODO 1: complete implementation of getBooks()
