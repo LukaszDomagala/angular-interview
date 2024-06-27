@@ -5,3 +5,14 @@ export interface Book {
     authors: Array<string>;
   };
 }
+
+export interface BookDetails {
+  id: string;
+  volumeInfo: {
+    dimensions: {
+      height: string,
+      width: string,
+      thickness: string,
+    }
+  };
+}

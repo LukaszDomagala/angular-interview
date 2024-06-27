@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Book } from './books.model';
+import { Book, BookDetails } from './books.model';
 import { BOOKS_MOCK } from './books-mock';
 
 @Injectable({ providedIn: 'root' })
@@ -25,6 +25,16 @@ export class GoogleBooksService {
         items: Book[];
       }>(baseUrl, { params: params })
       .pipe(map((books) => books.items || []));
+  }
+
+  
+  // TODO 4: complete implementation of getBookDetails()
+  // TODO 5: display book dimensions under the book Authors
+  getBookDetails(bookId: string): Observable<BookDetails> {
+    const baseUrl = 'https://www.googleapis.com/books/v1/volumes';
+
+    return this.http
+      .get<BookDetails>(`${baseUrl}/${bookId}`);
   }
 
   getMockBooks(): Observable<Array<Book>> {
