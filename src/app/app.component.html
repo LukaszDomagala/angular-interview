@@ -1,22 +1,12 @@
-<h1 class="text-4xl font-bold pb-4">Books Collection</h1>
-
-<app-form (enter)="onSearch($event)"></app-form>
-
-<div class="flex flex-row gap-4">
-  <div class="flex flex-col flex-1">
-    <h2 class="text-xl font-semibold pb-2">Books</h2>
-    <!-- TODO: add loader when books are being retrieved from API -->
-    <p *ngIf="isLoading$ | async; else booklist">Loading...</p>
-    <ng-template #booklist>
-      <app-book-list class="book-list" [books]="(books$ | async)!" (add)="onAdd($event)"></app-book-list>
-    </ng-template>
-  </div>
-
-  <div class="flex flex-col flex-1">
-    <h2 class="text-xl font-semibold pb-2">My Collection</h2>
-    <app-book-collection
-      class="book-collection"
-      [books]="(bookCollection$ | async)!"
-      (remove)="onRemove($event)"></app-book-collection>
-  </div>
-</div>
+<a
+    class="flex-0 bg-blue-600 text-white py-1 px-2 rounded mr-4"
+    routerLink="">
+    Home
+</a>
+<a
+    class="flex-0 bg-blue-600 text-white py-1 px-2 rounded mr-4"
+    routerLink="admin">
+    Admin
+</a>
+<hr class="my-4">
+<router-outlet></router-outlet>
